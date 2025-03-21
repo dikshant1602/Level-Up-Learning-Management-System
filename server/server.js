@@ -24,7 +24,7 @@ mongoose
 
 // routes configuration
 
-// Error handling middleware
+// Error handling middleware (global error handler)
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
