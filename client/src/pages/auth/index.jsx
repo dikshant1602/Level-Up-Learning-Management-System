@@ -33,9 +33,17 @@ function handleTabChange(value) {
           </TabsList>
           
           <TabsContent value="signin">Sign In</TabsContent>
-          <TabsContent value="signup">
-            <CommonForm formControls={signUpFormControls} />
-          </TabsContent>
+<TabsContent value="signup">
+  {activeTab === 'signup' ? (
+    <CommonForm 
+      formControls={signUpFormControls} 
+      formData={formData}
+      setFormData={setFormData}
+      handleSubmit={handleSubmit}  // Assuming you have a submit handler
+    />
+  ) : null}
+</TabsContent>
+
         </Tabs>
       </div>
     </div>
