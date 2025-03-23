@@ -1,7 +1,9 @@
 import { Button } from "../ui/button";
 import FormControls from "./form-controls";
 
-function CommonForm({handleSubmit, buttonText, formControls=[], formData, setFormData }) {
+function CommonForm({handleSubmit, buttonText, formControls=[], formData, setFormData,
+    isButtonDisabled=false
+ }) {
 
     return( 
         <form onSubmit={handleSubmit}>
@@ -11,7 +13,7 @@ function CommonForm({handleSubmit, buttonText, formControls=[], formData, setFor
             formData={formData} 
             setFormData={setFormData} 
             />
-            <Button type="submit"  className="mt-5 w-full">
+            <Button disabled={isButtonDisabled} type="submit"  className="mt-5 w-full">
                 {buttonText  || "Submit"}
             </Button>
         </form>

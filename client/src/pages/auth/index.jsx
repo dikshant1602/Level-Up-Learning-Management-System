@@ -15,18 +15,21 @@ import { Link } from "react-router-dom";
 
 function AuthPage() {
   const [activeTab, setActiveTab] = useState("signin");
+
   const {
-    signInFormData,
-    setSignInFormData,
-    signUpFormData,
+    signInFormData, 
+    setSignInFormData, 
+    signUpFormData, 
     setSignUpFormData,
-    handleRegisterUser,
-    handleLoginUser,
+    handleRegisterUser
   } = useContext(AuthContext);
+
 
   function handleTabChange(value) {
     setActiveTab(value);
   }
+
+console.log(signInFormData);
 
   function checkIfSignInFormIsValid() {
     return (
@@ -81,7 +84,7 @@ function AuthPage() {
                   formData={signInFormData}
                   setFormData={setSignInFormData}
                   isButtonDisabled={!checkIfSignInFormIsValid()}
-                  handleSubmit={handleLoginUser}
+                  handleSubmit={handleRegisterUser}
                 />
               </CardContent>
             </Card>

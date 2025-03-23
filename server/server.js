@@ -3,6 +3,7 @@ require("dotenv").config();  // Load environment variables first
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+import authRoutes from "./routes/auth-routes/index.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,7 +14,12 @@ console.log("PORT:", process.env.PORT);
 console.log("MONGO_URI:", process.env.MONGO_URI);
 
 
-app.use(cors()); // Fixed incorrect CORS setup
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+})); 
+
 app.use(express.json()); // Middleware to parse JSON
 
 // Connect to MongoDB
@@ -23,6 +29,7 @@ mongoose
   .catch((err) => console.log(" MongoDB connection error:", err));
 
 // routes configuration
+app.use("/auth", authRoutes);
 
 // Error handling middleware (global error handler)
 app.use((err, req, res, next) => {
