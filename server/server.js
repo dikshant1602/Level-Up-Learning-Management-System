@@ -1,46 +1,43 @@
-require("dotenv").config();  // Load environment variables first
-
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-import authRoutes from "./routes/auth-routes/index.js";
+// server.cjs
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const authRoutes = require('./routes/auth-routes/index.js'); // Use `require` here
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
-// Debug: Log environment variables to check if they load
+// Debug logs
 console.log("PORT:", process.env.PORT);
 console.log("MONGO_URI:", process.env.MONGO_URI);
-
 
 app.use(cors({
   origin: process.env.CLIENT_URL,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
-})); 
+}));
 
-app.use(express.json()); // Middleware to parse JSON
+app.use(express.json());
 
-// Connect to MongoDB
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log(" MongoDB is connected"))
-  .catch((err) => console.log(" MongoDB connection error:", err));
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log("MongoDB connection error:", err));
 
-// routes configuration
-app.use("/auth", authRoutes);
+app.use("/auth", authRoutes);  // Routes middleware
 
-// Error handling middleware (global error handler)
+// Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
     success: false,
-    message: "Something's wrong",
+    message: "Something went wrong.",
   });
 });
 
-// Listen on PORT
+// Start the server
 app.listen(PORT, () => {
   console.log(`✅ Server is now running on port ${PORT}`);
 });
