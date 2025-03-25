@@ -21,7 +21,8 @@ function AuthPage() {
     setSignInFormData, 
     signUpFormData, 
     setSignUpFormData,
-    handleRegisterUser
+    handleRegisterUser,
+    handleLoginUser,
   } = useContext(AuthContext);
 
 
@@ -84,7 +85,7 @@ console.log(signInFormData);
                   formData={signInFormData}
                   setFormData={setSignInFormData}
                   isButtonDisabled={!checkIfSignInFormIsValid()}
-                  handleSubmit={handleRegisterUser}
+                  handleSubmit={handleLoginUser}
                 />
               </CardContent>
             </Card>
