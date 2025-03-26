@@ -1,35 +1,44 @@
-import { Routes, Route } from "react-router-dom"; // ✅ No extra Router
-import AuthPage from "./pages/auth";
-import "./App.css";
-import RouteGuard from "./components/route-guard";
+import { Routes, Route } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "./context/auth-context";
+import AuthPage from "./pages/auth";
 import InstructorDashboardPage from "./pages/instructor";
-import StudentHomepage from "./pages/student/home";
+import StudentHomePage from "./pages/student/home";
 import StudentViewCommonLayout from "./components/student-view/common-layout";
+import RouteGuard from "./components/route-guard";
+import { AuthContext } from "./context/auth-context";
+import "./App.css";
+import NotFoundPage from "./pages/not-found";
 
 function App() {
+  const { auth } = useContext(AuthContext);
 
-  const {auth} = useContext(AuthContext);
   return (
     <Routes>
-      <Route path="/auth" element={<RouteGuard element={<AuthPage/>} 
-      authenticated={auth?.authenticated}
-      user={auth?.user}
-      />
-      } 
-      />
+      {/* Auth Route */}
       <Route
-        path="/instructor">
-          element={<RouteGuard 
-          element={
-          <InstructorDashboardPage/>
+        path="/auth"
+        element={
+          <RouteGuard
+            element={<AuthPage />}
+            authenticated={auth?.authenticate}
+            user={auth?.user}
+          />
         }
-        authenticated={auth?.authenticated}
-        user={auth?.user}
-        />
-      }
-      </Route>
+      />
+
+      {/* Instructor Dashboard */}
+      <Route
+        path="/instructor"
+        element={
+          <RouteGuard
+            element={<InstructorDashboardPage />}
+            authenticated={auth?.authenticate}
+            user={auth?.user}
+          />
+        }
+      />
+
+      {/* Student Routes */}
       <Route
         path="/"
         element={
@@ -40,9 +49,10 @@ function App() {
           />
         }
       >
-        <Route path="" element={<StudentHomepage/>}/>
-        <Route path="home" element={<StudentHomepage/>}/>
+        <Route path="" element={< StudentHomePage />} />
+        <Route path="home" element={< StudentHomePage />} />
       </Route>
+      <Route path="*" element={< NotFoundPage/>}/>
     </Routes>
   );
 }
