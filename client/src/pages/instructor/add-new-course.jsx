@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"; 
+import CourseCurriculum from "@/components/instructor-view/courses/add-new-course/course-curriculum";
 import CourseLanding from "@/components/instructor-view/courses/add-new-course/course-landing";
 import CourseSettings from "@/components/instructor-view/courses/add-new-course/course-settings";
-import CourseCurriculum from "@/components/instructor-view/courses/add-new-course/course-curriculum";
 
-function AddNewCourse() {
+
+function AddNewCoursePage() {
   function handleSubmit() {
     console.log("Submitting new course...");
     // Add course submission logic here
@@ -23,28 +24,35 @@ function AddNewCourse() {
 
       {/* Tabs Section */}
       <Card>
-        <CardContent className="p-6">
-          <Tabs defaultValue="curriculum" className="space-y-4">
-            <TabsList className="flex gap-4">
-              <TabsTrigger value="curriculum">Curriculum</TabsTrigger>
-              <TabsTrigger value="course-landing-page">Course Landing Page</TabsTrigger>
-              <TabsTrigger value="settings">Settings</TabsTrigger>
-            </TabsList>
+        <CardContent>
+          <div className="container mx-auto p-4">
+            <Tabs defaultValue="curriculum" className="space-y-4">
 
-            <TabsContent value="curriculum">
-              <CourseCurriculum />
-            </TabsContent>
-            <TabsContent value="course-landing-page">
-              <CourseLanding />
-            </TabsContent>
-            <TabsContent value="settings">
-              <CourseSettings />
-            </TabsContent>
-          </Tabs>
+              {/* Tabs List */}
+              <TabsList>
+                <TabsTrigger value="curriculum">Curriculum</TabsTrigger>
+                <TabsTrigger value="course-landing-page">
+                  Course Landing Page
+                </TabsTrigger>
+                <TabsTrigger value="settings">Settings</TabsTrigger>
+              </TabsList>
+
+              {/* Tabs Content */}
+              <TabsContent value="curriculum">
+                <CourseCurriculum />
+              </TabsContent>
+              <TabsContent value="course-landing-page">
+                <CourseLanding />
+              </TabsContent>
+              <TabsContent value="settings">
+                <CourseSettings />
+              </TabsContent>
+            </Tabs>
+          </div>
         </CardContent>
       </Card>
     </div>
   );
 }
 
-export default AddNewCourse;
+export default AddNewCoursePage;

@@ -8,57 +8,77 @@ import RouteGuard from "./components/route-guard";
 import { AuthContext } from "./context/auth-context";
 import "./App.css";
 import NotFoundPage from "./pages/not-found";
-import AddNewCourse from "./pages/instructor/add-new-course";
+import AddNewCoursePage from "./pages/instructor/add-new-course";
 
 function App() {
   const { auth } = useContext(AuthContext);
 
   return (
     <Routes>
-      {/* Auth Route */}
       <Route
         path="/auth"
         element={
-          <RouteGuard authenticated={auth?.authenticated} user={auth?.user}>
-            <AuthPage />
-          </RouteGuard>
+          <RouteGuard
+            element={<AuthPage />}
+            authenticated={auth?.authenticate}
+            user={auth?.user}
+          />
         }
       />
-
-      {/* Instructor Dashboard */}
       <Route
         path="/instructor"
         element={
-          <RouteGuard authenticated={auth?.authenticated} user={auth?.user}>
-            <InstructorDashboardPage />
-          </RouteGuard>
+          <RouteGuard
+            element={<InstructorDashboardPage />}
+            authenticated={auth?.authenticate}
+            user={auth?.user}
+          />
         }
       />
-
-      {/* Instructor Create Course */}
       <Route
         path="/instructor/create-new-course"
         element={
-          <RouteGuard authenticated={auth?.authenticated} user={auth?.user}>
-            <AddNewCourse />
-          </RouteGuard>
+          <RouteGuard
+            element={<AddNewCoursePage />}
+            authenticated={auth?.authenticate}
+            user={auth?.user}
+          />
         }
       />
-
-      {/* Student Routes */}
+      {/* <Route
+        path="/instructor/edit-course/:courseId"
+        element={
+          <RouteGuard
+            element={<AddNewCoursePage />}
+            authenticated={auth?.authenticate}
+            user={auth?.user}
+          />
+        }
+      /> */}
       <Route
         path="/"
         element={
-          <RouteGuard authenticated={auth?.authenticated} user={auth?.user}>
-            <StudentViewCommonLayout />
-          </RouteGuard>
+          <RouteGuard
+            element={<StudentViewCommonLayout />}
+            authenticated={auth?.authenticate}
+            user={auth?.user}
+          />
         }
       >
-        <Route index element={<StudentHomePage />} />
+        <Route path="" element={<StudentHomePage />} />
         <Route path="home" element={<StudentHomePage />} />
+        {/* <Route path="courses" element={<StudentViewCoursesPage />} /> */}
+        {/* <Route
+          path="course/details/:id"
+          element={<StudentViewCourseDetailsPage />}
+        />
+        <Route path="payment-return" element={<PaypalPaymentReturnPage />} />
+        <Route path="student-courses" element={<StudentCoursesPage />} />
+        <Route
+          path="course-progress/:id"
+          element={<StudentViewCourseProgressPage />}
+        /> */}
       </Route>
-
-      {/* 404 Not Found Page */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

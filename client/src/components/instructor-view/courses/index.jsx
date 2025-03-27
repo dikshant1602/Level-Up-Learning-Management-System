@@ -27,18 +27,23 @@ function InstructorCourses() {
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
+            
+            {/* Table Body */}
             <TableBody>
               <TableRow>
                 <TableCell className="font-medium">React JS Full Course</TableCell>
                 <TableCell>100</TableCell>
-                <TableCell>$400</TableCell>
+                <TableCell>$5000</TableCell>
                 <TableCell className="text-right">
-                  <Button variant="ghost" size="sm" className="mr-2">
+
+                  {/* Edit and Delete buttons */}
+                  <Button variant="ghost" size="sm" >
                     <Edit className="h-6 w-6" />
                   </Button>
                   <Button variant="ghost" size="sm">
                     <Delete className="h-6 w-6" />
                   </Button>
+
                 </TableCell>
               </TableRow>
             </TableBody>
