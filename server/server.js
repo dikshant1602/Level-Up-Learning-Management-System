@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth-routes/index.js'); // Use `require` here
+const mediaRoutes = require('./routes/auth-routes/instructor-routes/media-routes.js'); // Use `require` here
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,6 +28,7 @@ mongoose
   .catch((err) => console.log("MongoDB connection error:", err));
 
 app.use("/auth", authRoutes);  // Routes middleware
+app.use("/media", mediaRoutes); // Routes middleware
 
 // Global error handler
 app.use((err, req, res, next) => {
