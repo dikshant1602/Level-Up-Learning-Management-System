@@ -70,18 +70,18 @@ export async function updateCourseByIdService(id, formData) {
   return data;
 }
 
-// export async function mediaBulkUploadService(formData, onProgressCallback) {
-//   const { data } = await axiosInstance.post("/media/bulk-upload", formData, {
-//     onUploadProgress: (progressEvent) => {
-//       const percentCompleted = Math.round(
-//         (progressEvent.loaded * 100) / progressEvent.total
-//       );
-//       onProgressCallback(percentCompleted);
-//     },
-//   });
+export async function mediaBulkUploadService(formData, onProgressCallback) {
+  const { data } = await axiosInstance.post("/media/bulk-upload", formData, {
+    onUploadProgress: (progressEvent) => {
+      const percentCompleted = Math.round(
+        (progressEvent.loaded * 100) / progressEvent.total
+      );
+      onProgressCallback(percentCompleted);
+    },
+  });
 
-//   return data;
-// }
+  return data;
+}
 
 // export async function fetchStudentViewCourseListService(query) {
 //   const { data } = await axiosInstance.get(`/student/course/get?${query}`);

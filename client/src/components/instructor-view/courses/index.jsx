@@ -3,15 +3,30 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableCaption, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Delete, Edit } from "lucide-react";
+import { useContext } from "react";
+import { InstructorContext } from "@/context/auth-context/instructor-context";
+import { courseCurriculumInitialFormData, courseLandingInitialFormData } from "@/config";
+
 
 function InstructorCourses({ listOfCourses }) {
   const navigate = useNavigate(); // ✅ Use navigate function
+  const  { 
+    setCurrentEditedCourseId,   
+    setCourseLandingFormData, 
+    setCourseCurriculumFormData
+  } = useContext(InstructorContext);
 
   return (
     <Card>
       <CardHeader className="flex justify-between flex-row items-center">
         <CardTitle className="text-3xl font-extrabold">All Courses</CardTitle>
-        <Button onClick={() => navigate('/instructor/create-new-course')} className="p-6">
+        <Button onClick={() => {
+          setCurrentEditedCourseId(null);
+          navigate('/instructor/create-new-course');
+          setCourseLandingFormData(courseLandingInitialFormData);
+          setCourseCurriculumFormData(courseCurriculumInitialFormData);
+          }} 
+          className="p-6">
           Create New Course
         </Button>
       </CardHeader>
@@ -35,8 +50,12 @@ function InstructorCourses({ listOfCourses }) {
                     <TableCell>{course?.students?.length}</TableCell>
                     <TableCell>${course?.pricing}</TableCell>
                     <TableCell className="text-right">
+
                       {/* Edit and Delete buttons */}
-                      <Button variant="ghost" size="sm">
+                      <Button onClick={()=>{
+                        navigate(`/instructor/edit-course/${course?._id}`);
+                      } 
+                      } variant="ghost" size="sm">
                         <Edit className="h-6 w-6" />
                       </Button>
                       <Button variant="ghost" size="sm">
