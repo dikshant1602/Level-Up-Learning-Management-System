@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useContext } from "react";
 import { Switch } from "@/components/ui/switch";
 import { courseCurriculumInitialFormData } from "@/config";
-import { mediaUploadService } from "@/services";
+import { mediaDeleteService, mediaUploadService } from "@/services";
 import MediaProgressbar from "@/components/common-form/media-progress-bar";
 import VideoPlayer from "@/components/video-player";
 //import { mediaBulkUploadService } from "@/services";
@@ -97,7 +97,7 @@ function CourseCurriculum(){
         }
       }
 
-   console.log(courseCurriculumFormData);
+   //console.log(courseCurriculumFormData);
 
    
    function isCourseCurriculumFormDataValid() {

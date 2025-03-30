@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableCaption, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Delete, Edit } from "lucide-react";
 
-function InstructorCourses() {
+function InstructorCourses({ listOfCourses }) {
   const navigate = useNavigate(); // ✅ Use navigate function
 
   return (
@@ -27,25 +27,29 @@ function InstructorCourses() {
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
-            
-            {/* Table Body */}
             <TableBody>
-              <TableRow>
-                <TableCell className="font-medium">React JS Full Course</TableCell>
-                <TableCell>100</TableCell>
-                <TableCell>$5000</TableCell>
-                <TableCell className="text-right">
-
-                  {/* Edit and Delete buttons */}
-                  <Button variant="ghost" size="sm" >
-                    <Edit className="h-6 w-6" />
-                  </Button>
-                  <Button variant="ghost" size="sm">
-                    <Delete className="h-6 w-6" />
-                  </Button>
-
-                </TableCell>
-              </TableRow>
+              {listOfCourses && listOfCourses.length > 0 ? (
+                listOfCourses.map((course, index) => (
+                  <TableRow key={index}> {/* ✅ Added unique key */}
+                    <TableCell className="font-medium">{course?.title}</TableCell>
+                    <TableCell>{course?.students?.length}</TableCell>
+                    <TableCell>${course?.pricing}</TableCell>
+                    <TableCell className="text-right">
+                      {/* Edit and Delete buttons */}
+                      <Button variant="ghost" size="sm">
+                        <Edit className="h-6 w-6" />
+                      </Button>
+                      <Button variant="ghost" size="sm">
+                        <Delete className="h-6 w-6" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan="4" className="text-center">No courses available</TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </div>
