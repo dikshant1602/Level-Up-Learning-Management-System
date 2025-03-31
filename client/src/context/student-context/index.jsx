@@ -1,9 +1,14 @@
 import { createContext, useState } from "react";
 
-export const StudentContext = createContext(null)
+// ✅ Ensure StudentContext is correctly exported
+export const StudentContext = createContext(null);
 
-export default function StudentProvider({children}){
-const [studentViewCourseList, setStudentsViewCoursesList] = useState([]);
+export default function StudentProvider({ children }) {
+  const [studentViewCourseList, setStudentViewCoursesList] = useState([]);
 
-    return <StudentContext.Provider value={{studentViewCourseList, setStudentsViewCoursesList}}>{children}</StudentContext.Provider>
+  return (
+    <StudentContext.Provider value={{ studentViewCourseList, setStudentViewCoursesList }}>
+      {children}
+    </StudentContext.Provider>
+  );
 }

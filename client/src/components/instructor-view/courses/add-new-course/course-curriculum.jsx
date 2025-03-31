@@ -128,6 +128,22 @@ function CourseCurriculum() {
         }
     }
 
+    async function handleDeleteLecture(currentIndex) {
+        let cpyCourseCurriculumFormData = [...courseCurriculumFormData];
+        const getCurrentSelectedVideoPublicId =
+          cpyCourseCurriculumFormData[currentIndex].public_id;
+    
+        const response = await mediaDeleteService(getCurrentSelectedVideoPublicId);
+    
+        if (response?.success) {
+          cpyCourseCurriculumFormData = cpyCourseCurriculumFormData.filter(
+            (_, index) => index !== currentIndex
+          );
+    
+          setCourseCurriculumFormData(cpyCourseCurriculumFormData);
+        }
+      }
+
     return (
         <Card>
             {/* Header with Bulk Upload Button */}
@@ -162,7 +178,15 @@ function CourseCurriculum() {
                                 {item.videoUrl ? (
                                     <div className="flex gap-3">
                                         <VideoPlayer url={item.videoUrl} width="450px" height="200px" />
-                                        <Button onClick={() => handleReplaceVideo(index)}>Replace Video</Button>
+                                        <Button onClick={() => handleReplaceVideo(index)}>
+                      Replace Video
+                    </Button>
+                    <Button
+                      onClick={() => handleDeleteLecture(index)}
+                      className="bg-red-900"
+                    >
+                      Delete Lecture
+                    </Button>
                                     </div>
                                 ) : (
                                     <Input type="file" accept="video" onChange={(event) => handleSingleLectureUpload(event, index)} className="mb-4" />

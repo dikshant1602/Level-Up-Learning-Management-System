@@ -3,7 +3,7 @@ const Course = require('../../models/Course')
 
 const getAllStudentsViewCourses= async(req,res)=>{
     try {
-        const coursesList = await Courses.find({})
+        const coursesList = await Course.find({})
 
         if(coursesList.length === 0){
             return res.status(404).json({
@@ -47,7 +47,7 @@ const getAllStudentsViewCourseDetails= async(req,res)=>{
         console.log(e);
         res.status(500).json({
             success : false,
-            messae : 'Some error occured'
+            message : 'Some error occured'
         });
         
     }

@@ -9,14 +9,15 @@ function StudentHomePage() {
   const { studentViewCourseList, setStudentViewCoursesList } =
     useContext(StudentContext);
 
-  async function fetchAllStudentViewCourses() {
-    const response = await fetchStudentViewCourseListService();
-    if (response?.success) setStudentViewCoursesList(response?.data);
-  }
+    async function fetchAllStudentViewCourses() {
+      const response = await fetchStudentViewCourseListService();
+      if (response?.success) setStudentViewCoursesList(response?.data);
+    }
 
   useEffect(() => {
     fetchAllStudentViewCourses();
   }, []);
+  
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -68,40 +69,31 @@ function StudentHomePage() {
   </h2>
 
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    {studentViewCourseList && studentViewCourseList.length > 0 ? (
-      studentViewCourseList.map((courseItem, index) => (
-        <div
-          key={index}
-          className="border rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform hover:scale-105"
-        >
-          {/* Ensure Image URL is Correct */}
-          {courseItem?.image ? (
-            <img
-              src={courseItem?.image}
-             // alt={courseItem.title || "Course Image"}
-              width={300}
-              height={150}
-              className="w-full h-40 object-cover"
-            />
+          {studentViewCourseList && studentViewCourseList.length > 0 ? (
+            studentViewCourseList.map((courseItem) => (
+              <div
+               // onClick={() => handleCourseNavigate(courseItem?._id)}
+                className="border rounded-lg overflow-hidden shadow cursor-pointer"
+              >
+                <img
+                  src={courseItem?.image}
+                  width={300}
+                  height={150}
+                  className="w-full h-40 object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="font-bold mb-2">{courseItem?.title}</h3>
+                  <p className="text-sm text-gray-700 mb-2">
+                    {courseItem?.instructorName}
+                  </p>
+                  <p className="font-bold text-[16px]">
+                    ${courseItem?.pricing}
+                  </p>
+                </div>
+              </div>
+            ))
           ) : (
-            <div className="w-full h-40 bg-gray-300 flex items-center justify-center">
-              <span className="text-gray-600">No Image Available</span>
-            </div>
-          )}
-
-          <div className="p-4">
-            <h3 className="font-bold mb-2 text-lg">{courseItem?.title}</h3>
-            <p className="text-sm text-gray-700 mb-2">
-              {courseItem?.instructorName}
-            </p>
-            <p className="font-bold text-[16px]">${courseItem?.pricing}</p>
-          </div>
-        </div>
-      ))
-    ) : (
-      <h1 className="text-center col-span-full text-xl font-bold text-gray-600">
-        No Courses Found
-      </h1>
+            <h1>No Courses Found</h1>
     )}
   </div>
 </section>
