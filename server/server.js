@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth-routes/index.js'); // Use `require` here
 const mediaRoutes = require('./routes/auth-routes/instructor-routes/media-routes.js'); // Use `require` here
 const instructorCourseRoutes = require('./routes/auth-routes/instructor-routes/course-routes.js');
-//const instructorCourseRoutes = require("./routes/auth-routes/instructor-routes/course-routes");
+const studentViewCourseRoutes = require("./routes/student-routes/course-routes.js");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -32,6 +32,7 @@ mongoose
 app.use("/auth", authRoutes);  // Routes middleware
 app.use("/media", mediaRoutes); // Routes middleware
 app.use("/instructor/course", instructorCourseRoutes);
+app.use("/student/course", studentViewCourseRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {
