@@ -40,7 +40,7 @@ function StudentViewCoursesPage() {
   const [filters, setFilters] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
   const {
-    studentViewCoursesList,
+    studentViewCourseList,
     setStudentViewCoursesList,
     loadingState,
     setLoadingState,
@@ -123,7 +123,9 @@ function StudentViewCoursesPage() {
     };
   }, []);
 
-  console.log(loadingState, "loadingState");
+  //console.log(loadingState, "loadingState");
+  console.log(filters);
+  
 
   return (
     <div className="container mx-auto p-4">
@@ -186,12 +188,12 @@ function StudentViewCoursesPage() {
               </DropdownMenuContent>
             </DropdownMenu>
             <span className="text-sm text-black font-bold">
-              {studentViewCoursesList.length} Results
+              {studentViewCourseList.length} Results
             </span>
           </div>
           <div className="space-y-4">
-            {studentViewCoursesList && studentViewCoursesList.length > 0 ? (
-              studentViewCoursesList.map((courseItem) => (
+            {studentViewCourseList && studentViewCourseList.length > 0 ? (
+              studentViewCourseList.map((courseItem) => (
                 <Card
                   onClick={() => handleCourseNavigate(courseItem?._id)}
                   className="cursor-pointer"
