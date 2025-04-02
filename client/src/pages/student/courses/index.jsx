@@ -14,7 +14,7 @@ import { filterOptions, sortOptions } from "@/config";
 import { AuthContext } from "@/context/auth-context";
 import { StudentContext } from "@/context/student-context";
 import {
- // checkCoursePurchaseInfoService,
+  checkCoursePurchaseInfoService,
   fetchStudentViewCourseListService,
 } from "@/services";
 import { ArrowUpDownIcon } from "lucide-react";
@@ -123,8 +123,8 @@ function StudentViewCoursesPage() {
     };
   }, []);
 
-  //console.log(loadingState, "loadingState");
-  console.log(filters);
+  console.log(loadingState, "loadingState");
+  //console.log(filters);
   
 
   return (
