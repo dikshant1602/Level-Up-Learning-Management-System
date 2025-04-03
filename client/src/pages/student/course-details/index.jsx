@@ -13,7 +13,7 @@ import VideoPlayer from "@/components/video-player";
 import { AuthContext } from "@/context/auth-context";
 import { StudentContext } from "@/context/student-context";
 import {
-   checkCoursePurchaseInfoService,
+ //  checkCoursePurchaseInfoService,
 //   createPaymentService,
   fetchStudentViewCourseDetailsService,
 } from "@/services";
