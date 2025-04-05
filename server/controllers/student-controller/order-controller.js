@@ -1,5 +1,5 @@
-//const paypal = require("../../helpers/paypal");
-const paypal = require("paypal-rest-sdk");
+const paypal = require("../../helpers/paypal")
+//const paypal = require("paypal-rest-sdk");
 const Order = require("../../models/order");
 const Course = require("../../models/Course");
 const StudentCourses = require("../../models/StudentCourses");
