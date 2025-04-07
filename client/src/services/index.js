@@ -133,13 +133,13 @@ export async function fetchStudentBoughtCoursesService(studentId) {
   return data;
 }
 
-// export async function getCurrentCourseProgressService(userId, courseId) {
-//   const { data } = await axiosInstance.get(
-//     `/student/course-progress/get/${userId}/${courseId}`
-//   );
+export async function getCurrentCourseProgressService(userId, courseId) {
+  const { data } = await axiosInstance.get(
+    `/student/course-progress/get/${userId}/${courseId}`
+  );
 
-//   return data;
-// }
+  return data;
+}
 
 // export async function markLectureAsViewedService(userId, courseId, lectureId) {
 //   const { data } = await axiosInstance.post(
