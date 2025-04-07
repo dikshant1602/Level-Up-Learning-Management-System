@@ -91,19 +91,19 @@ export async function fetchStudentViewCourseListService(query) {
 
 export async function fetchStudentViewCourseDetailsService(courseId) {
   const { data } = await axiosInstance.get(
-    `/student/course/get/details/${courseId}`
+    `/student/course/get/details/${courseId}/`
   );
 
   return data;
 }
 
-// export async function checkCoursePurchaseInfoService(courseId, studentId) {
-//   const { data } = await axiosInstance.get(
-//     `/student/course/purchase-info/${courseId}/${studentId}`
-//   );
+export async function checkCoursePurchaseInfoService(courseId, studentId) {
+  const { data } = await axiosInstance.get(
+    `/student/course/purchase-info/${courseId}/${studentId}`
+  );
 
-//   return data;
-// }
+  return data;
+}
 
 export async function createPaymentService(formData) {
   const { data } = await axiosInstance.post(`/student/order/create`, formData);
@@ -125,13 +125,13 @@ export async function captureAndFinalizePaymentService(
   return data;
 }
 
-// export async function fetchStudentBoughtCoursesService(studentId) {
-//   const { data } = await axiosInstance.get(
-//     `/student/courses-bought/get/${studentId}`
-//   );
+export async function fetchStudentBoughtCoursesService(studentId) {
+  const { data } = await axiosInstance.get(
+    `/student/courses-bought/get/${studentId}`
+  );
 
-//   return data;
-// }
+  return data;
+}
 
 // export async function getCurrentCourseProgressService(userId, courseId) {
 //   const { data } = await axiosInstance.get(

@@ -13,8 +13,8 @@ import VideoPlayer from "@/components/video-player";
 import { AuthContext } from "@/context/auth-context";
 import { StudentContext } from "@/context/student-context";
 import {
- //  checkCoursePurchaseInfoService,
-   createPaymentService,
+  checkCoursePurchaseInfoService,
+  createPaymentService,
   fetchStudentViewCourseDetailsService,
 } from "@/services";
 import { CheckCircle, Globe, Lock, PlayCircle } from "lucide-react";
@@ -42,19 +42,19 @@ function StudentViewCourseDetailsPage() {
   const location = useLocation();
 
   async function fetchStudentViewCourseDetails() {
-    // const checkCoursePurchaseInfoResponse =
-    //   await checkCoursePurchaseInfoService(
-    //     currentCourseDetailsId,
-    //     auth?.user._id
-    //   );
+    const checkCoursePurchaseInfoResponse =
+      await checkCoursePurchaseInfoService(
+        currentCourseDetailsId,
+        auth?.user._id
+      );
 
-    // if (
-    //   checkCoursePurchaseInfoResponse?.success &&
-    //   checkCoursePurchaseInfoResponse?.data
-    // ) {
-    //   navigate(`/course-progress/${currentCourseDetailsId}`);
-    //   return;
-    // }
+    if (
+      checkCoursePurchaseInfoResponse?.success &&
+      checkCoursePurchaseInfoResponse?.data
+    ) {
+      navigate(`/course-progress/${currentCourseDetailsId}`);
+      return;
+    }
 
     const response = await fetchStudentViewCourseDetailsService(
       currentCourseDetailsId
@@ -91,9 +91,8 @@ function StudentViewCourseDetailsPage() {
       courseTitle: studentViewCourseDetails?.title,
       courseId: studentViewCourseDetails?._id,
       coursePricing: studentViewCourseDetails?.pricing,
-      
     };
-    
+
     console.log(paymentPayload, "paymentPayload");
     const response = await createPaymentService(paymentPayload);
 
@@ -104,7 +103,7 @@ function StudentViewCourseDetailsPage() {
       );
       setApprovalUrl(response?.data?.approveUrl);
     }
-  };
+  }
 
   useEffect(() => {
     if (displayCurrentVideoFreePreview !== null) setShowFreePreviewDialog(true);
