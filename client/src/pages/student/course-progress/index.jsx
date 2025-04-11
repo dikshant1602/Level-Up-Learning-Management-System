@@ -16,8 +16,8 @@ import { AuthContext } from "@/context/auth-context";
 import { StudentContext } from "@/context/student-context";
 import {
   getCurrentCourseProgressService,
-  // markLectureAsViewedService,
-  // resetCourseProgressService,
+  markLectureAsViewedService,
+  resetCourseProgressService,
 } from "@/services";
 import { Check, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
@@ -52,12 +52,14 @@ function StudentViewCourseProgressPage() {
           setCurrentLecture(response?.data?.courseDetails?.curriculum[0]);
           setShowCourseCompleteDialog(true);
           setShowConfetti(true);
+
           return;
         }
 
         if (response?.data?.progress?.length === 0) {
           setCurrentLecture(response?.data?.courseDetails?.curriculum[0]);
         } else {
+          console.log("logging here");
           const lastIndexOfViewedAsTrue = response?.data?.progress.reduceRight(
             (acc, obj, index) => {
               return acc === -1 && obj.viewed ? index : acc;
@@ -66,7 +68,9 @@ function StudentViewCourseProgressPage() {
           );
 
           setCurrentLecture(
-            response?.data?.courseDetails?.curriculum[lastIndexOfViewedAsTrue + 1]
+            response?.data?.courseDetails?.curriculum[
+              lastIndexOfViewedAsTrue + 1
+            ]
           );
         }
       }
@@ -75,37 +79,30 @@ function StudentViewCourseProgressPage() {
 
   async function updateCourseProgress() {
     if (currentLecture) {
-      // Commented out to avoid ReferenceError
-      // const response = await markLectureAsViewedService(
-      //   auth?.user?._id,
-      //   studentCurrentCourseProgress?.courseDetails?._id,
-      //   currentLecture._id
-      // );
+      const response = await markLectureAsViewedService(
+        auth?.user?._id,
+        studentCurrentCourseProgress?.courseDetails?._id,
+        currentLecture._id
+      );
 
-      // if (response?.success) {
-      //   fetchCurrentCourseProgress();
-      // }
-
-      // Temporary console log for debugging
-      console.log("Marking lecture as viewed:", currentLecture?.title);
+      if (response?.success) {
+        fetchCurrentCourseProgress();
+      }
     }
   }
 
   async function handleRewatchCourse() {
-    // Commented out to avoid ReferenceError
-    // const response = await resetCourseProgressService(
-    //   auth?.user?._id,
-    //   studentCurrentCourseProgress?.courseDetails?._id
-    // );
+    const response = await resetCourseProgressService(
+      auth?.user?._id,
+      studentCurrentCourseProgress?.courseDetails?._id
+    );
 
-    // if (response?.success) {
-    //   setCurrentLecture(null);
-    //   setShowConfetti(false);
-    //   setShowCourseCompleteDialog(false);
-    //   fetchCurrentCourseProgress();
-    // }
-
-    console.log("Rewatching course logic triggered");
+    if (response?.success) {
+      setCurrentLecture(null);
+      setShowConfetti(false);
+      setShowCourseCompleteDialog(false);
+      fetchCurrentCourseProgress();
+    }
   }
 
   useEffect(() => {
@@ -119,6 +116,8 @@ function StudentViewCourseProgressPage() {
   useEffect(() => {
     if (showConfetti) setTimeout(() => setShowConfetti(false), 15000);
   }, [showConfetti]);
+
+  console.log(currentLecture, "currentLecture");
 
   return (
     <div className="flex flex-col h-screen bg-[#1c1d1f] text-white">
