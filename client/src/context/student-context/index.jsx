@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
 export const StudentContext = createContext(null);
 
 export default function StudentProvider({ children }) {
-  const [studentViewCourseList, setStudentViewCoursesList] = useState([]);
+  const [studentViewCoursesList, setStudentViewCoursesList] = useState([]);
   const [loadingState, setLoadingState] = useState(true);
   const [studentViewCourseDetails, setStudentViewCourseDetails] = useState(null);
   const [currentCourseDetailsId, setCurrentCourseDetailsId] = useState(null);
@@ -12,7 +12,7 @@ export default function StudentProvider({ children }) {
   const [studentCurrentCourseProgress, setStudentCurrentCourseProgress] = useState({});
   return (
     <StudentContext.Provider value={{ 
-    studentViewCourseList, 
+    studentViewCoursesList, 
     setStudentViewCoursesList, 
     loadingState, 
     setLoadingState,
