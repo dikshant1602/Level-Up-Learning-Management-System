@@ -33,20 +33,13 @@ This is my **first full-stack project**, a fully functional and modern **Learnin
 | PayPal API     | Payment gateway integration  |
 | Shadcn/UI      | Styled React components      |
 | Tailwind CSS   | Utility-first CSS framework  |
-|-----------------------------------------------|
 
-## 📦 Installation
 
 ### Prerequisites:
 - Node.js
 - MongoDB
 - Cloudinary account
 - PayPal Developer account
-
-### Clone the Repo
-```bash
-git clone https://github.com/dikshant1602/Level-Up-Learning-Management-System.git
-cd Level-Up-Learning-Management-System
 
 ### Learnings
 - As my first full-stack application, this project helped me:
@@ -55,3 +48,9 @@ cd Level-Up-Learning-Management-System
 - Handle secure payments and media uploads
 - Build a responsive UI with shadcn/ui and Tailwind
 - Manage complex state and user flows
+  
+### Clone the Repo
+```bash
+git clone https://github.com/dikshant1602/Level-Up-Learning-Management-System.git
+cd Level-Up-Learning-Management-System
+
