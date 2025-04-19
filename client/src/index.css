@@ -90,3 +90,7 @@ body::-webkit-scrollbar-thumb {
   @apply bg-[darkgrey];
   outline: 1px solid slategrey;
 }
+
+/* body {
+  background-image: url(/client/public/cover.jpg);
+} */
