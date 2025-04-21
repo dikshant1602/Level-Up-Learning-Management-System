@@ -6,6 +6,9 @@ import { StudentContext } from "@/context/student-context";
 import { checkCoursePurchaseInfoService, fetchstudentViewCoursesListService } from "@/services";
 import { AuthContext } from "@/context/auth-context";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
 
 function StudentHomePage() {
   const { studentViewCoursesList, setStudentViewCoursesList } =
@@ -129,7 +132,108 @@ function StudentHomePage() {
     )}
   </div>
 </section>
+<section className="w-full bg-gray-100 py-12 px-4 lg:px-8">
+  <h2 className="text-3xl font-bold mb-8 text-center lg:text-left">What Our Students Say</h2>
+  <Swiper
+    spaceBetween={20}
+    slidesPerView={1}
+    breakpoints={{
+      640: { slidesPerView: 1 },
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    }}
+    autoplay={{ delay: 4000 }}
+    className="max-w-6xl mx-auto"
+  >
+    {[
+      {
+        name: "Aarav Mehta",
+        feedback: "The courses were detailed and helped me land my first internship!",
+        image: "https://randomuser.me/api/portraits/men/43.jpg",
+      },
+      {
+        name: "Sneha Rani",
+        feedback: "The instructors are amazing and explain everything clearly.",
+        image: "https://randomuser.me/api/portraits/women/68.jpg",
+      },
+      {
+        name: "Rohit Sharma",
+        feedback: "This platform gave me the confidence to build full-stack projects.",
+        image: "https://randomuser.me/api/portraits/men/33.jpg",
+      },
+    ].map((testimonial, index) => (
+      <SwiperSlide key={index}>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="bg-white shadow-lg rounded-lg p-6 text-center mx-2"
+        >
+          <img
+            src={testimonial.image}
+            alt={testimonial.name}
+            className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
+          />
+          <p className="italic text-gray-700 mb-2">"{testimonial.feedback}"</p>
+          <h4 className="font-bold">{testimonial.name}</h4>
+        </motion.div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</section>
 
+{/* Our Creators Section */}
+<section className="w-full bg-white py-12 px-4 lg:px-8">
+  <h2 className="text-3xl font-bold mb-8 text-center lg:text-left">
+    Meet the Creators
+  </h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+    {[
+      {
+        name: "Riya Kapoor",
+        role: "Frontend Developer",
+        image: "https://randomuser.me/api/portraits/women/44.jpg",
+        education: "B.Tech, IIT Delhi",
+        experience: "3+ yrs in React.js & Tailwind CSS",
+      },
+      {
+        name: "Ankit Patel",
+        role: "Backend Developer",
+        image: "https://randomuser.me/api/portraits/men/52.jpg",
+        education: "MCA, NIT Trichy",
+        experience: "4+ yrs in Node.js & MongoDB",
+      },
+      {
+        name: "Neha Singh",
+        role: "UI/UX Designer",
+        image: "https://randomuser.me/api/portraits/women/49.jpg",
+        education: "B.Des, NID Ahmedabad",
+        experience: "5+ yrs in UX Design",
+      },
+      {
+        name: "Karan Joshi",
+        role: "Project Manager",
+        image: "https://randomuser.me/api/portraits/men/47.jpg",
+        education: "MBA, IIM Bangalore",
+        experience: "7+ yrs in IT Project Management",
+      },
+    ].map((creator, index) => (
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        className="bg-gray-50 p-6 rounded-lg shadow text-center hover:shadow-lg transition-shadow"
+        key={index}
+      >
+        <img
+          src={creator.image}
+          alt={creator.name}
+          className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+        />
+        <h3 className="font-bold text-lg">{creator.name}</h3>
+        <p className="text-gray-600">{creator.role}</p>
+        <p className="text-sm text-gray-500 mt-2">{creator.education}</p>
+        <p className="text-sm text-gray-500 mb-2">{creator.experience}</p>
+      </motion.div>
+    ))}
+  </div>
+</section>
 
     </div>
   );
