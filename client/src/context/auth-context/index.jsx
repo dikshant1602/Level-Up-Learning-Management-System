@@ -13,6 +13,7 @@ export default function AuthProvider({ children }) {
     user: null,
   });
   const [loading, setLoading] = useState(true);
+  
 
   async function handleRegisterUser(event) {
     event.preventDefault();

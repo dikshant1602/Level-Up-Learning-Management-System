@@ -138,13 +138,13 @@ function StudentViewCourseDetailsPage() {
       : -1;
 
   return (
-    <div className=" mx-auto p-4">
+    <div className="mx-auto p-4">
       <div className="bg-gray-900 text-white p-8 rounded-t-lg">
-        <h1 className="text-3xl font-bold mb-4">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-4">
           {studentViewCourseDetails?.title}
         </h1>
-        <p className="text-xl mb-4">{studentViewCourseDetails?.subtitle}</p>
-        <div className="flex items-center space-x-4 mt-2 text-sm">
+        <p className="text-xl sm:text-2xl mb-4">{studentViewCourseDetails?.subtitle}</p>
+        <div className="flex flex-col sm:flex-row sm:space-x-4 mt-2 text-sm sm:text-base">
           <span>Created By {studentViewCourseDetails?.instructorName}</span>
           <span>Created On {studentViewCourseDetails?.date.split("T")[0]}</span>
           <span className="flex items-center">
@@ -159,14 +159,14 @@ function StudentViewCourseDetailsPage() {
           </span>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row gap-8 mt-8">
+      <div className="flex flex-col sm:flex-row gap-8 mt-8">
         <main className="flex-grow">
           <Card className="mb-8">
             <CardHeader>
               <CardTitle>What you'll learn</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {studentViewCourseDetails?.objectives
                   .split(",")
                   .map((objective, index) => (
@@ -192,6 +192,7 @@ function StudentViewCourseDetailsPage() {
               {studentViewCourseDetails?.curriculum?.map(
                 (curriculumItem, index) => (
                   <li
+                    key={index}
                     className={`${
                       curriculumItem?.freePreview
                         ? "cursor-pointer"
@@ -215,7 +216,7 @@ function StudentViewCourseDetailsPage() {
             </CardContent>
           </Card>
         </main>
-        <aside className="w-full md:w-[500px]">
+        <aside className="w-full sm:w-[500px]">
           <Card className="sticky top-4">
             <CardContent className="p-6">
               <div className="aspect-video mb-4 rounded-lg flex items-center justify-center">
@@ -227,7 +228,7 @@ function StudentViewCourseDetailsPage() {
                         ].videoUrl
                       : ""
                   }
-                  width="450px"
+                  width="100%"
                   height="200px"
                 />
               </div>
@@ -250,35 +251,33 @@ function StudentViewCourseDetailsPage() {
           setDisplayCurrentVideoFreePreview(null);
         }}
       >
-        <DialogContent className="w-[800px]">
+        <DialogContent className="w-full sm:w-[800px]">
           <DialogHeader>
             <DialogTitle>Course Preview</DialogTitle>
           </DialogHeader>
           <div className="aspect-video rounded-lg flex items-center justify-center">
             <VideoPlayer
               url={displayCurrentVideoFreePreview}
-              width="450px"
+              width="100%"
               height="200px"
             />
           </div>
           <div className="flex flex-col gap-2">
             {studentViewCourseDetails?.curriculum
               ?.filter((item) => item.freePreview)
-              .map((filteredItem) => (
-                <p
-                  onClick={() => handleSetFreePreview(filteredItem)}
-                  className="cursor-pointer text-[16px] font-medium"
+              .map((curriculumItem) => (
+                <Button
+                  key={curriculumItem._id}
+                  onClick={() =>
+                    setDisplayCurrentVideoFreePreview(curriculumItem.videoUrl)
+                  }
                 >
-                  {filteredItem?.title}
-                </p>
+                  {curriculumItem.title}
+                </Button>
               ))}
           </div>
-          <DialogFooter className="sm:justify-start">
-            <DialogClose asChild>
-              <Button type="button" variant="secondary">
-                Close
-              </Button>
-            </DialogClose>
+          <DialogFooter>
+            <DialogClose>Close</DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>

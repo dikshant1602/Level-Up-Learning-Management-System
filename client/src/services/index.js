@@ -165,3 +165,18 @@ export async function resetCourseProgressService(userId, courseId) {
 
   return data;
 }
+
+export async function generateCertificateService(studentName, courseName) {
+  try {
+    const response = await axiosInstance.post("/api/student/certificate", { // <--- VERY IMPORTANT: CHECK THIS PATH
+      studentName,
+      courseName,
+    }, {
+      responseType: 'blob',
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error generating certificate:", error);
+    throw error;
+  }
+}

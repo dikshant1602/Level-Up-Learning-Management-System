@@ -35,6 +35,7 @@ function StudentViewCourseProgressPage() {
     useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [isSideBarOpen, setIsSideBarOpen] = useState(true);
+  const [isGeneratingCertificate, setIsGeneratingCertificate] = useState(false); // To show loading state
   const { id } = useParams();
 
   async function fetchCurrentCourseProgress() {
@@ -52,9 +53,10 @@ function StudentViewCourseProgressPage() {
           setCurrentLecture(response?.data?.courseDetails?.curriculum[0]);
           setShowCourseCompleteDialog(true);
           setShowConfetti(true);
-
           return;
         }
+        
+        
 
         if (response?.data?.progress?.length === 0) {
           setCurrentLecture(response?.data?.courseDetails?.curriculum[0]);
@@ -105,6 +107,57 @@ function StudentViewCourseProgressPage() {
     }
   }
 
+  async function generateCertificateHandler(studentNameRaw, courseNameRaw, instructorNameRaw) {
+    const studentName = studentNameRaw?.trim() || "Student";
+    const courseName = courseNameRaw?.trim() || "Course";
+    const instructorName = instructorNameRaw?.trim() || "Instructor";
+  
+    if (!studentName || !courseName || !instructorName) {
+      console.error("Missing student name, course name, or instructor name");
+      return;
+    }
+  
+    setIsGeneratingCertificate(true);
+    console.log("generateCertificateHandler called");
+    console.log("Student Name:", studentName, "Course Name:", courseName, "Instructor Name:", instructorName);
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/student/certificate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ studentName, courseName, instructorName }),
+      });
+  
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+  
+        const safeStudentName = studentName.replace(/[^a-z0-9]/gi, "_").toLowerCase();
+        const safeCourseName = courseName.replace(/[^a-z0-9]/gi, "_").toLowerCase();
+  
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${safeStudentName}-${safeCourseName}-certificate.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+  
+        console.log("Certificate downloaded");
+      } else {
+        console.error("Failed to generate certificate:", response.status, await response.text());
+      }
+    } catch (error) {
+      console.error("Error generating certificate:", error);
+    } finally {
+      setIsGeneratingCertificate(false);
+    }
+  }
+  
+  
+
   useEffect(() => {
     fetchCurrentCourseProgress();
   }, [id]);
@@ -118,6 +171,13 @@ function StudentViewCourseProgressPage() {
   }, [showConfetti]);
 
   console.log(currentLecture, "currentLecture");
+//   console.log("auth.user:", auth?.user);
+console.log("studentCurrentCourseProgress:", studentCurrentCourseProgress);
+console.log("Full auth object:", auth);
+console.log("Auth User:", auth.user);
+
+
+
 
   return (
     <div className="flex flex-col h-screen bg-[#1c1d1f] text-white">
@@ -229,7 +289,7 @@ function StudentViewCourseProgressPage() {
         </DialogContent>
       </Dialog>
       <Dialog open={showCourseCompleteDialog}>
-        <DialogContent showOverlay={false} className="sm:w-[425px]">
+        <DialogContent showOverlay={false} className="sm:w-[600px]">
           <DialogHeader>
             <DialogTitle>Congratulations!</DialogTitle>
             <DialogDescription className="flex flex-col gap-3">
@@ -239,7 +299,24 @@ function StudentViewCourseProgressPage() {
                   My Courses Page
                 </Button>
                 <Button onClick={handleRewatchCourse}>Rewatch Course</Button>
-              </div>
+                {isGeneratingCertificate ? (
+  <Button disabled>Generating Certificate...</Button>
+) : (
+  <Button
+  onClick={() => {
+    const fullName = auth?.user?.userName;
+    const courseTitle = studentCurrentCourseProgress?.courseDetails?.title;
+    const instructorName = studentCurrentCourseProgress?.courseDetails?.instructorName;
+
+    generateCertificateHandler(fullName, courseTitle, instructorName);
+  }}
+>
+  Download Certificate
+</Button>
+
+
+)}
+ </div>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
