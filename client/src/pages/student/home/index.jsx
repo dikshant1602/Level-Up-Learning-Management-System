@@ -133,7 +133,7 @@ function StudentHomePage() {
   </div>
 </section>
 <section className="w-full bg-gray-100 py-12 px-4 lg:px-8">
-  <h2 className="text-3xl font-bold mb-8 text-center lg:text-left">What Our Students Say</h2>
+  <h2 className="text-3xl font-bold mb-8 text-center lg:text-left">Our Studets at the Top Firms</h2>
   <Swiper
     spaceBetween={20}
     slidesPerView={1}
@@ -148,17 +148,17 @@ function StudentHomePage() {
     {[
       {
         name: "Aarav Mehta",
-        feedback: "The courses were detailed and helped me land my first internship!",
+        feedback: "The courses were detailed and helped me land my first internship at Google. Interating with teachers was a big win.",
         image: "https://randomuser.me/api/portraits/men/43.jpg",
       },
       {
-        name: "Sneha Rani",
-        feedback: "The instructors are amazing and explain everything clearly.",
+        name: "Selina Johns",
+        feedback: "The instructors are amazing and explain everything clearly. Level Up helped me to get the job offer from Meta.",
         image: "https://randomuser.me/api/portraits/women/68.jpg",
       },
       {
-        name: "Rohit Sharma",
-        feedback: "This platform gave me the confidence to build full-stack projects.",
+        name: "Rohit Jain",
+        feedback: "This platform gave me the confidence to build full-stack projects to launch my own website.",
         image: "https://randomuser.me/api/portraits/men/33.jpg",
       },
     ].map((testimonial, index) => (
@@ -180,22 +180,23 @@ function StudentHomePage() {
   </Swiper>
 </section>
 
+
 {/* Our Creators Section */}
 <section className="w-full bg-white py-12 px-4 lg:px-8">
   <h2 className="text-3xl font-bold mb-8 text-center lg:text-left">
-    Meet the Creators
+    Meet the Course Creators
   </h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
     {[
       {
-        name: "Riya Kapoor",
+        name: "Riya James",
         role: "Frontend Developer",
         image: "https://randomuser.me/api/portraits/women/44.jpg",
         education: "B.Tech, IIT Delhi",
         experience: "3+ yrs in React.js & Tailwind CSS",
       },
       {
-        name: "Ankit Patel",
+        name: "Adam Sandler",
         role: "Backend Developer",
         image: "https://randomuser.me/api/portraits/men/52.jpg",
         education: "MCA, NIT Trichy",
@@ -209,7 +210,7 @@ function StudentHomePage() {
         experience: "5+ yrs in UX Design",
       },
       {
-        name: "Karan Joshi",
+        name: "Bruce Wayne",
         role: "Project Manager",
         image: "https://randomuser.me/api/portraits/men/47.jpg",
         education: "MBA, IIM Bangalore",

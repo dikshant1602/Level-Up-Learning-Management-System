@@ -25,9 +25,9 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4">Contact</h3>
             <ul>
-              <li>Email: <a href="mailto:support@example.com" className="hover:text-blue-400">support@example.com</a></li>
-              <li>Phone: <a href="tel:+1234567890" className="hover:text-blue-400">+123 456 7890</a></li>
-              <li>Address: 1234 Street, City, Country</li>
+              <li>Email: <a href="mailto:dikshantchoudhary12345@gmail.com" className="hover:text-blue-400">support@example.com</a></li>
+              <li>Phone: <a href="tel:+91-9461921220" className="hover:text-blue-400">+91-9461921220</a></li>
+              <li>Address: Udaipur, India</li>
             </ul>
           </div>
 
@@ -42,28 +42,50 @@ const Footer = () => {
           </div>
 
           {/* Social Media Links */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-600">
-                <FaFacebookF size={24} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-pink-600">
-                <FaInstagram size={24} />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400">
-                <FaTwitter size={24} />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-600">
-                <FaLinkedin size={24} />
-              </a>
-            </div>
-          </div>
+          <div className="flex flex-col items-center">
+  <h3 className="text-xl font-semibold mb-4 text-center">Follow Us</h3>
+  <div className="flex items-center space-x-4">
+    <a
+      href="https://facebook.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-400 hover:text-blue-600"
+    >
+      <FaFacebookF size={24} />
+    </a>
+    <a
+      href="https://instagram.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-400 hover:text-pink-600"
+    >
+      <FaInstagram size={24} />
+    </a>
+    <a
+      href="https://twitter.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-400 hover:text-blue-400"
+    >
+      <FaTwitter size={24} />
+    </a>
+    <a
+      href="https://www.linkedin.com/in/dikshant-choudhary-67726a22a"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-400 hover:text-blue-600"
+    >
+      <FaLinkedin size={24} />
+    </a>
+  </div>
+</div>
+
+
         </div>
 
         {/* Copyright */}
         <div className="mt-8 text-center">
-          <p className="text-sm">&copy; {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+          <p className="text-sm">&copy; {new Date().getFullYear()} Level Up. All rights reserved.</p>
         </div>
       </div>
     </footer>
