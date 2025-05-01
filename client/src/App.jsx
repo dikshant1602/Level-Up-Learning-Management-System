@@ -20,7 +20,7 @@ function App() {
   const { auth } = useContext(AuthContext);
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
+    <div className="flex flex-col min-h-screen bg-background text-foreground w-full">
       <main className="flex-1">
         <Routes>
           <Route
@@ -84,7 +84,6 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-
     </div>
   );
 }

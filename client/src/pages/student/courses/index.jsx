@@ -189,51 +189,43 @@ function StudentViewCoursesPage() {
               {studentViewCoursesList.length} Results
             </span>
           </div>
-          <div className="space-y-4">
-            {studentViewCoursesList && studentViewCoursesList.length > 0 ? (
-              studentViewCoursesList.map((courseItem) => (
-                <Card
-                  onClick={() => handleCourseNavigate(courseItem?._id)}
-                  className="cursor-pointer"
-                  key={courseItem?._id}
-                >
-                  <CardContent className="flex gap-4 p-4">
-                    <div className="w-48 h-32 flex-shrink-0">
-                      <img
-                        src={courseItem?.image}
-                        className="w-ful h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <CardTitle className="text-xl mb-2">
-                        {courseItem?.title}
-                      </CardTitle>
-                      <p className="text-sm text-gray-600 mb-1">
-                        Created By{" "}
-                        <span className="font-bold">
-                          {courseItem?.instructorName}
-                        </span>
-                      </p>
-                      <p className="text-[16px] text-gray-600 mt-3 mb-2">
-                        {`${courseItem?.curriculum?.length} ${
-                          courseItem?.curriculum?.length <= 1
-                            ? "Lecture"
-                            : "Lectures"
-                        } - ${courseItem?.level.toUpperCase()} Level`}
-                      </p>
-                      <p className="font-bold text-lg">
-                        ${courseItem?.pricing}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))
-            ) : loadingState ? (
-              <Skeleton />
-            ) : (
-              <h1 className="font-extrabold text-4xl">No Courses Found</h1>
-            )}
-          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {studentViewCoursesList.map((courseItem) => (
+    <Card
+      onClick={() => handleCourseNavigate(courseItem?._id)}
+      className="cursor-pointer hover:shadow-lg transition-shadow"
+      key={courseItem?._id}
+    >
+      <CardContent className="p-0">
+        <img
+          src={courseItem?.image}
+          className="w-full h-40 object-cover rounded-t-lg"
+          alt={courseItem?.title}
+        />
+        <div className="p-4">
+          <CardTitle className="text-lg mb-2">
+            {courseItem?.title}
+          </CardTitle>
+          <p className="text-sm text-gray-600 mb-1">
+            Created By{" "}
+            <span className="font-bold">
+              {courseItem?.instructorName}
+            </span>
+          </p>
+          <p className="text-sm text-gray-500">
+            {`${courseItem?.curriculum?.length} ${
+              courseItem?.curriculum?.length <= 1 ? "Lecture" : "Lectures"
+            } - ${courseItem?.level.toUpperCase()} Level`}
+          </p>
+          <p className="font-bold text-base mt-2">
+            ${courseItem?.pricing}
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  ))}
+</div>
+
         </main>
       </div>
     </div>

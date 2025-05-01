@@ -41,7 +41,7 @@ function CourseSettings(){
     return(
     <Card>
         <CardHeader>
-        <CardTitle>Course Settings</CardTitle>
+        <CardTitle>Course Thumbnail</CardTitle>
         </CardHeader>
         <div className="p-4">
         {
