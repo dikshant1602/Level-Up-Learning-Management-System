@@ -15,16 +15,16 @@ function StudentViewCommonHeader() {
   }
 
   return (
-<header className="flex flex-col md:flex-row items-center justify-between p-4 border-b relative gap-y-4 md:gap-y-0">
+<header className="flex flex-col md:flex-row items-center justify-between p-4 border-b relative gap-y-4 md:gap-y-0 md:space-x-12">
   {/* Left section */}
-  <div className="flex flex-col md:flex-row items-center w-full md:w-auto justify-between md:justify-start gap-y-4 md:gap-y-0">
+  <div className="flex flex-col md:flex-row items-center w-full md:w-auto justify-between md:justify-start gap-y-4 md:gap-y-0 md:space-x-6">
     <Link to="/home" className="flex items-center hover:text-black">
       <GraduationCap className="h-8 w-8 mr-2" />
       <span className="font-extrabold text-[16px] md:text-xl">LEVEL-UP</span>
     </Link>
 
-    {/* Navigation buttons */}
-    <div className="flex space-x-2 mt-2 md:mt-0">
+    {/* Navigation buttons: Explore Courses + Become Instructor */}
+    <div className="flex space-x-2">
       <Button
         variant="ghost"
         onClick={() => {
@@ -52,7 +52,7 @@ function StudentViewCommonHeader() {
   </div>
 
   {/* Right section */}
-  <div className="flex flex-col md:flex-row items-center w-full md:w-auto justify-between md:justify-end gap-y-4 md:gap-y-0">
+  <div className="flex flex-col md:flex-row items-center w-full md:w-auto justify-between md:justify-end gap-y-4 md:gap-y-0 md:space-x-6">
     <div
       onClick={() => navigate("/student-courses")}
       className="flex items-center gap-3 cursor-pointer"
