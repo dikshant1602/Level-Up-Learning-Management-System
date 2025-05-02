@@ -12,6 +12,7 @@ const studentCoursesRoutes = require("./routes/student-routes/student-courses-ro
 const studentCourseProgressRoutes = require("./routes/student-routes/course-progress-routes.js");
 // Import the student certificate routes
 const studentCertificateRoutes = require("./routes/student-routes/student-certificate.js");
+const teacherRoutes = require("./routes/teacher-routes/teacher-routes.js");
 
 
 const app = express();
@@ -44,6 +45,8 @@ app.use("/student/courses-bought", studentCoursesRoutes);
 app.use("/student/course-progress", studentCourseProgressRoutes);
 // Mount the student certificate routes
 app.use("/api/student", studentCertificateRoutes); // <--- VERY IMPORTANT: CHECK THIS PREFIX
+app.use('/api/teacher', teacherRoutes);
+
 
 // Global error handler
 app.use((err, req, res, next) => {

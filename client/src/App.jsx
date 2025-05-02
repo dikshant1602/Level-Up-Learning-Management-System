@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import AuthPage from "./pages/auth";
 import InstructorDashboardPage from "./pages/instructor";
@@ -15,6 +15,8 @@ import PaypalPaymentReturnPage from "./pages/student/payment-return";
 import StudentCoursesPage from "./pages/student/student-courses";
 import StudentViewCourseProgressPage from "./pages/student/course-progress";
 import Footer from "./components/student-view/footer";
+import SuperAdminDashboard from './application form/SuperAdminDashboard';
+
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -80,6 +82,7 @@ function App() {
             <Route path="payment-return" element={<PaypalPaymentReturnPage />} />
             <Route path="student-courses" element={<StudentCoursesPage />} />
             <Route path="course-progress/:id" element={<StudentViewCourseProgressPage />} />
+            <Route path="/superadmin" element={<SuperAdminDashboard />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
