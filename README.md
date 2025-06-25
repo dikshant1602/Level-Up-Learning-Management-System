@@ -1,56 +1,77 @@
 # 🎓 Full-Stack Learning Management System (LMS)
-This is my **first full-stack project**, a fully functional and modern **Learning Management System (LMS)** built using the **MERN stack**. It allows users to **add**, **buy**, and **access courses**, while tracking their progress in real-time. The project features a clean UI powered by **shadcn/ui**, secure **PayPal integration**, and **Cloudinary** for managing media content.
+
+This is my **first full-stack project**, a fully functional and modern **Learning Management System (LMS)** built using the **MERN stack**. It allows users to **add**, **purchase**, and **access courses**, track progress in real-time, **download certificates**, and even **apply to become instructors**. The UI is powered by **shadcn/ui**, with **secure PayPal integration** and **Cloudinary** for media management.
+
+---
 
 ## 🚀 Features
-- 📚 **Course Management**
-  - Add new courses
-  - View all available courses
-  - Purchase premium courses via PayPal
-- 👤 **User Dashboard**
-  - View enrolled courses
-  - Track lesson progress
-  - View and download certificates (optional)
-- 🎨 **Modern UI**
-  - Built with `shadcn/ui` for an elegant and responsive interface
-- 💳 **Secure Payments**
-  - Integrated PayPal payment gateway
-- ☁️ **Cloud-Based Media**
-  - Uses Cloudinary for uploading course thumbnails and video content
-- 📊 **Admin Panel**
-  - Manage courses and users
-  - View sales and enrollments (if added)
 
+### 📚 Course Management
+
+* Add and manage new courses
+* View all available courses
+* Purchase premium content via PayPal
+
+### 👤 User Dashboard
+
+* View enrolled courses
+* Track lesson progress
+* **Download course certificates**
+* **Apply to become an instructor**
+
+### 🎨 Modern UI
+
+* Built with `shadcn/ui` for an elegant and responsive interface
+
+### 💳 Secure Payments
+
+* Integrated PayPal payment gateway for secure transactions
+
+### ☁️ Cloud-Based Media
+
+* Upload course thumbnails and videos using Cloudinary
+
+### 📊 Admin Panel (Optional)
+
+* Manage all courses and users
+* View sales reports and enrollment stats (if enabled)
+
+---
 
 ## 🛠️ Tech Stack
 
-| Tech           | Usage                        |
-|----------------|------------------------------|
-| React.js       | Frontend                     |
-| Node.js        | Backend server               |
-| Express.js     | Backend framework            |
-| MongoDB        | Database                     |
-| Cloudinary     | Media storage and delivery   |
-| PayPal API     | Payment gateway integration  |
-| Shadcn/UI      | Styled React components      |
-| Tailwind CSS   | Utility-first CSS framework  |
+| Technology   | Role                          |
+| ------------ | ----------------------------- |
+| React.js     | Frontend                      |
+| Node.js      | Backend server                |
+| Express.js   | Backend framework             |
+| MongoDB      | NoSQL database                |
+| Cloudinary   | Media hosting (images/videos) |
+| PayPal API   | Payment gateway               |
+| Shadcn/UI    | Modern UI components          |
+| Tailwind CSS | Styling with utility classes  |
 
+---
 
-### Prerequisites:
-- Node.js
-- MongoDB
-- Cloudinary account
-- PayPal Developer account
+## ✅ Prerequisites
 
-### Learnings
-- As my first full-stack application, this project helped me:
-- Understand REST APIs and client-server architecture
-- Work with third-party services like PayPal and Cloudinary
-- Handle secure payments and media uploads
-- Build a responsive UI with shadcn/ui and Tailwind
-- Manage complex state and user flows
-  
-### Clone the Repo
-```bash
-git clone https://github.com/dikshant1602/Level-Up-Learning-Management-System.git
-cd Level-Up-Learning-Management-System
+* Node.js and npm
+* MongoDB (local or Atlas)
+* Cloudinary account (for media uploads)
+* PayPal Developer account (sandbox credentials)
+
+---
+
+## 📚 Learnings
+
+This project taught me how to:
+
+* Build and connect a full-stack app (frontend, backend, database)
+* Design RESTful APIs and handle user authentication
+* Integrate third-party services like PayPal and Cloudinary
+* Upload and serve media content securely
+* Implement conditional routing and dynamic dashboards
+* Manage user roles (student, admin, instructor)
+
+---
 
