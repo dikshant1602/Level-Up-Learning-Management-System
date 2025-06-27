@@ -18,6 +18,7 @@ import Footer from "./components/student-view/footer";
 import SuperAdminDashboard from './application form/SuperAdminDashboard';
 
 
+
 function App() {
   const { auth } = useContext(AuthContext);
 
@@ -90,7 +91,5 @@ function App() {
     </div>
   );
 }
-
-
 
 export default App;
